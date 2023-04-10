@@ -1,4 +1,4 @@
-# <Your-Project-Title>
+# Marvel's Avengers Quiz by Kevin Callaghan
 
 ## Description
 
@@ -24,6 +24,8 @@ What are the steps required to install your project? Provide a step-by-step desc
 
 ## Usage
 
+Here is a link to the deployed Quiz:
+
 Provide instructions and examples for use. Include screenshots as needed.
 
 To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the following syntax:
@@ -36,7 +38,7 @@ To add a screenshot, create an `assets/images` folder in your repository and upl
 
 1. I learned how to make the buttons grow when hovering from 30secondeofcode.org in an article written by Angelos Chalaris called "Button Grow Animation" (2021).  Here is a link to the article: https://www.30secondsofcode.org/css/s/button-hover-grow-animation/#:~:text=Use%20the%20%3Ahover%20pseudo%2Dclass,the%20user%20hovers%20over%20it.
 
-2. 
+2. I used an article on codingartistweb.com called "Quiz App With Javascript to get an idea of what variables I will need to pull from my html for use in functions and also how to set up a timer.  I used the same idea of the timer to then make the progressElement.  This article was very helpful in getting an understanding of the task at hand.  Here is a link to the article: https://codingartistweb.com/2022/06/quiz-app-with-javascript/ 
 
 ## License
 

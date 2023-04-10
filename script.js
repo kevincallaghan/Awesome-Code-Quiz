@@ -50,6 +50,12 @@ const questions = [
 ]
 
 // quiz variables for the start of the game
+const questionContainer = document.getElementById("question-container");
+const startButton = document.getElementById("start-button");
+const questionElement = document.getElementById("question");
+const answerButtonsElement = document.getElementById("answers");
+const timerElement = document.getElementById("time");
+const progressElement = document.getElementById("current-question");
 
 // Variables for my html elements to interact with
 
