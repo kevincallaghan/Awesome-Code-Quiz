@@ -35,6 +35,8 @@ const questionContainer = document.getElementById("question-container");
 const questionElement = document.getElementById("question");
 const answerButtonElements = document.getElementById("answer-button-container");
 
+//TODO Need to add additional variables for timer, progress, score, etc.
+
 // Question and answer variables
 const questions = [
   {
@@ -64,9 +66,6 @@ const questions = [
   },
 ]
 
-
-
-// Variables for my html elements to interact with
 
 //Start the quiz
 startButton.addEventListener("click", startQuiz);
@@ -104,15 +103,9 @@ for (let i = 0; i < questions[currentQuestion].answers.length; i++) {
 //   }, 1000);
 // };
 
-//Need function for when an answer is entered - is it correct?  is it incorrect?  keep in mind the progress, score, timer.
+// Need function for when an answer is entered - is it correct?  is it incorrect?  keep in mind the progress, score, timer.
 
-//Need a function to end the quiz.  Keep in mind the score and name being stored.  Keep in mind the timer.
+// Need a function to end the quiz.  Keep in mind the score and name being stored.  Keep in mind the timer.
 
-//Need a function to store score locally
-
-
-
-
-
-
+// Need a function to store score locally
 
