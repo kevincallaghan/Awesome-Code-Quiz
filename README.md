@@ -40,6 +40,15 @@ To add a screenshot, create an `assets/images` folder in your repository and upl
 
 2. I used an article on codingartistweb.com called "Quiz App With Javascript to get an idea of what variables I will need to pull from my html for use in functions and also how to set up a timer.  I used the same idea of the timer to then make the progressElement.  This article was very helpful in getting an understanding of the task at hand.  Here is a link to the article: https://codingartistweb.com/2022/06/quiz-app-with-javascript/ 
 
+3. I found an article on  that showed me how to create a progress bar.  I changed it a little to fit more how we learned to write in our class, but I used the idea and the ID names from the example.  Here is the link to the article: https://www.w3schools.com/howto/howto_js_progressbar.asp
+
+4. I found a timer on Stack Overflow that seemed very much like what I was wanting.  I copied the timer from an answer to the featured question.  The answer was written by Lorenzo Cinque.  Here is a link to the page: https://stackoverflow.com/questions/30427882/make-a-timer-using-setinterval 
+
+5.
+
+
+
+
 ## License
 
 The last section of a high-quality README file is the license. This lets other developers know what they can and cannot do with your project. If you need help choosing a license, refer to [https://choosealicense.com/](https://choosealicense.com/).

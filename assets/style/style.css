@@ -34,8 +34,23 @@ main {
 
 .timer-progress-container {
 display: flex;
-flex-direction: row-reverse;
-justify-content: space-around;
+justify-content: space-evenly;
+flex-wrap: nowrap;
+}
+
+#myProgress {
+  width: 100%;
+  background-color: transparent;
+}
+
+#myBar {
+  width: 05%;
+  height: 30px;
+  border-radius: 20px;
+  background-color: #04AA6D;
+  text-align: center;
+  line-height: 30px;
+  color: white;
 }
 
 /* Quiz Section */
@@ -79,8 +94,9 @@ transform: scale(1.1);
 .bottom-button-container {
 display: flex;
 justify-content: center;
-border-top: 3px solid var(--dark-green);
-border-bottom: 3px solid var(--dark-green);
+border: 3px solid var(--dark-green);
+/* border-top: 3px solid var(--dark-green);
+border-bottom: 3px solid var(--dark-green); */
 border-radius: 25px;
 margin-top: 20px;
 }

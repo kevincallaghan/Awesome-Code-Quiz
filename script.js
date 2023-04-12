@@ -23,8 +23,8 @@
 // Global variables
 let currentQuestion = 0;
 let score = 0;
-let timeLeft = 75;
-let timerInterval;
+var progress = 0;
+let remainingTime = 75;
 
 // Variables taken from HTML
 const startButton = document.getElementById("start-button");
@@ -32,10 +32,14 @@ const nextButton = document.getElementById("next-button");
 const submitButton = document.getElementById("submit-button");
 const nameInput = document.getElementById("name-input");
 const questionContainer = document.getElementById("question-container");
+const timerContainer = document.getElementById("timer");
+const progressContainer = document.getElementById("myProgress");
 const questionElement = document.getElementById("question");
+const timerElement = document.getElementById("time")
 const answerButtonElements = document.getElementById("answer-button-container");
+const startingTime = 120;
+const scoreDisplay = document.getElementById("score");
 
-//TODO Need to add additional variables for timer, progress, score, etc.
 
 // Question and answer variables
 const questions = [
@@ -66,46 +70,95 @@ const questions = [
   },
 ]
 
+//Starts the quiz and the timer at the same time.
+//TODO Still something wrong with timer - won't show on screen - FIX LATER!!!!  Need to update Credits tomorrow!!!
 
-//Start the quiz
-startButton.addEventListener("click", startQuiz);
+startButton.addEventListener("click", startQuizWithTimer);
 
-function startQuiz() {
-  // Hide start button and show quiz/timer/progress
+function startQuizWithTimer() {
   startButton.classList.add("hidden");
   questionContainer.classList.remove("hidden");
   timerContainer.classList.remove("hidden");
-  progressDiv.classList.remove("hidden");
+  progressContainer.classList.remove("hidden");
+  scoreDisplay.classList.remove("hidden");
+  score = 0;
+  remainingTime = startingTime;
+
+  //! See Credits for Timer Inspiration
   
-  timerDisplay();
+  function startTimer(seconds, cb) {
+    timerContainer.innerText = remainingTime;
+    var remainingTime = seconds;
+    var intervalId = setInterval(function () {
+      console.log(remainingTime);
+      remainingTime--;
+      if (remainingTime < 0) {
+        clearInterval(intervalId);
+        cb();
+      }
+    }, 1000);
+  }
+
+  var callback = function () {
+    console.log('Oops, you ran out of time!');
+    endQuiz();
+  };
+
+  startTimer(90, callback);
 }
 
-// Shows the question and answer choices
+// Shows the question and answer choices from the questions array
 questionElement.innerText = questions[currentQuestion].question;
 for (let i = 0; i < questions[currentQuestion].answers.length; i++) {
   const answerButton = answerButtonElements.children[i];
   answerButton.innerText = questions[currentQuestion].answers[i];
   answerButton.dataset.answer = questions[currentQuestion].answers[i];
-  // answerButton.addEventListener("click", selectAnswer);
+  
+  answerButton.addEventListener("click", selectAnswer);
 
-  //TODO Need to figure out how to score the answers correct or incorrect
+  //TODO Need to figure out how to remove time from timer after I get the timer working correctly
 }
 
-//todo Timer - not currently working
-// const timerDisplay = () => {
-//   countdown = setInterval(() => {
-//     count--;
-//     timeLeft.innerHTML = `${count}s`;
-//     if (count == 0) {
-//       clearInterval(countdown);
-//       displayNext();
-//     }
-//   }, 1000);
-// };
+//User selects their answer and either gets it correct  and earns points or !correct and will lose time
+function selectAnswer() {
+  const selectedButton = event.target;
+  const selectedAnswer = selectedButton.dataset.answer;
+  const correctAnswer = questions[currentQuestion].correctAnswer;
+  if (selectedAnswer === correctAnswer) {
+    score += 10;
+    scoreDisplay.innerText = score;
+  }
+  //Need to add else that will remove time from timer
+  currentQuestion++;
+  updateProgressBar();
+  if (currentQuestion === questions.length || remainingTime <= 0) {
+    endQuiz();
+  } else {
+    nextQuestion();
+  }
+}
 
-// Need function for when an answer is entered - is it correct?  is it incorrect?  keep in mind the progress, score, timer.
 
-// Need a function to end the quiz.  Keep in mind the score and name being stored.  Keep in mind the timer.
+//! See Credits for Progress Bar Inspiration
 
-// Need a function to store score locally
+function updateProgressBar() {
+  if (progress < 100) {
+    var elem = document.getElementById("myBar");
+    progress += 20;
+    elem.style.width = progress + "%";
+    elem.innerHTML = progress + "%";
+  }
+}
 
+//TODO FUNCTIONS I KNOW I WILL NEED FOR THIS TO WORK
+function nextQuestion() {
+    //Need to show the next question when I click an answer for the previous question
+}
+
+function endQuiz() { 
+    //Need the quiz to end when the questions end, or when time runs out.  This should also call the saveScore function I still need to figure out.
+}
+
+function saveScore () {
+    //Need some way to save the score to local memory - name prompt and final score should be saved.
+}
