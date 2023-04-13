@@ -2,7 +2,7 @@
   --white: #fff;
   --black: #000;
   --dark-slate-green: #2f4f4f;
-  --light-neutral: #b9b9b9;
+  --light-neutral: #d8d7d7;
   --dark-neutral: #8d8c8c;
   --dark-green: #04160b;
   --deep-red: #4d2a2a;
@@ -47,23 +47,39 @@ flex-wrap: nowrap;
   width: 05%;
   height: 30px;
   border-radius: 20px;
-  background-color: #04AA6D;
   text-align: center;
   line-height: 30px;
   color: white;
+  background-color: #04AA6D;
 }
+
+<style>div {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+
+}
+
+/* Avengers Photo */
+
+.avengersPic {
+  width:85%;
+}
+
 
 /* Quiz Section */
 
 .outside-container {
-max-width:850px;
+/* max-width:800px; */
+width: 500px;
 border-radius: 25px;
 border: 2px solid var(--dark-green);
 margin: 0 auto;
 background-color: var(--light-neutral);
 padding: 20px;
-margin-top: 4rem;
+margin-top: 3rem;
 box-shadow: 0 8px 12px 0 var(--dark-green);
+text-align: center;
 }
 
 .quiz-title {
@@ -79,8 +95,8 @@ display: none;
 background-color: var(--dark-slate-green);
 color: var(--light-neutral);
 font-weight: 700;
-padding: 10px;
-margin: 10px;
+padding:10px;
+margin: 5px;
 border-radius: 25px;
 min-width: 80px;
 width:90%
@@ -111,20 +127,8 @@ background-color: var(--deep-red);
 background-color: var(--dark-red);
 }
 
-.next-button {
-
-}
-
-.answer-containerv{
-
-}
-
-#question-container {
-
-}
-
 #question {
-padding: 10px 0 10px 0;
+padding: 5px 0 10px 0;
 font-size: 1.35rem;
 font-weight: 700;
 }
@@ -138,6 +142,18 @@ flex-direction: column;
 justify-content: space-around;
 align-content: space-around;
 flex-wrap: wrap;
+}
+
+.next-button {
+
+}
+
+.answer-containerv{
+
+}
+
+#question-container {
+
 }
 
 .choices {

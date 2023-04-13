@@ -44,7 +44,7 @@ To add a screenshot, create an `assets/images` folder in your repository and upl
 
 4. I found a timer on Stack Overflow that seemed very much like what I was wanting.  I copied the timer from an answer to the featured question.  The answer was written by Lorenzo Cinque.  Here is a link to the page: https://stackoverflow.com/questions/30427882/make-a-timer-using-setinterval 
 
-5.
+5. I found a Stack Overflow page that showed me how to stop my setInterval.  It was previously 
 
 
 
