@@ -24,7 +24,8 @@
 let currentQuestion = 0;
 let score = 0;
 var progress = 0;
-let remainingTime = 75;
+let remainingTime = 0;
+let intervalId;
 
 // Variables taken from HTML
 const startButton = document.getElementById("start-button");
@@ -34,12 +35,13 @@ const nameInput = document.getElementById("name-input");
 const questionContainer = document.getElementById("question-container");
 const timerContainer = document.getElementById("timer");
 const progressContainer = document.getElementById("myProgress");
-const questionElement = document.getElementById("question");
+const scoreFormContainer = document.getElementById("saveScoreForm");
+const questionText = document.getElementById("question");
 const timerElement = document.getElementById("time")
-const answerButtonElements = document.getElementById("answer-button-container");
-const startingTime = 120;
+const answerButtonContainer = document.getElementById("answer-button-container");
+const startingTime = 90;
 const scoreDisplay = document.getElementById("score");
-
+const timerDisplay = document.getElementById("timer");
 
 // Question and answer variables
 const questions = [
@@ -49,7 +51,7 @@ const questions = [
     correctAnswer: "Robert Downey Jr."
   },
   {
-    question: "What is the name of the God of Thunder",
+    question: "Who is the Norse God of Thunder?",
     answers: ["Loki", "Odin", "Thor", "Star-Lord"],
     correctAnswer: "Thor"
   },
@@ -81,16 +83,14 @@ function startQuizWithTimer() {
   timerContainer.classList.remove("hidden");
   progressContainer.classList.remove("hidden");
   scoreDisplay.classList.remove("hidden");
-  score = 0;
   remainingTime = startingTime;
 
   //! See Credits for Timer Inspiration
-  
   function startTimer(seconds, cb) {
-    timerContainer.innerText = remainingTime;
-    var remainingTime = seconds;
-    var intervalId = setInterval(function () {
-      console.log(remainingTime);
+    remainingTime = seconds;
+    intervalId = setInterval(function () {
+      console.log(remainingTime + " seconds remaining!");
+      timerContainer.innerText = remainingTime;
       remainingTime--;
       if (remainingTime < 0) {
         clearInterval(intervalId);
@@ -99,24 +99,36 @@ function startQuizWithTimer() {
     }, 1000);
   }
 
+  timerContainer.innerText = remainingTime;
+
   var callback = function () {
     console.log('Oops, you ran out of time!');
     endQuiz();
   };
 
-  startTimer(90, callback);
+  startTimer(startingTime, callback);
+}
+
+//! See Credits for Progress Bar Inspiration
+function updateProgressBar() {
+  if (progress < 100) {
+    var elem = document.getElementById("myBar");
+    progress += 20;
+    elem.style.width = progress + "%";
+    elem.innerHTML = progress + "%";
+  }
 }
 
 // Shows the question and answer choices from the questions array
-questionElement.innerText = questions[currentQuestion].question;
+questionText.innerText = questions[currentQuestion].question;
 for (let i = 0; i < questions[currentQuestion].answers.length; i++) {
-  const answerButton = answerButtonElements.children[i];
+  const answerButton = answerButtonContainer.children[i];
   answerButton.innerText = questions[currentQuestion].answers[i];
   answerButton.dataset.answer = questions[currentQuestion].answers[i];
   
   answerButton.addEventListener("click", selectAnswer);
 
-  //TODO Need to figure out how to remove time from timer after I get the timer working correctly
+  //TODO Need to figure out how to remove time from timer after an incorrect answer
 }
 
 //User selects their answer and either gets it correct  and earns points or !correct and will lose time
@@ -126,7 +138,7 @@ function selectAnswer() {
   const correctAnswer = questions[currentQuestion].correctAnswer;
   if (selectedAnswer === correctAnswer) {
     score += 10;
-    scoreDisplay.innerText = score;
+    scoreDisplay.innerText = score + " Points";
   }
   //Need to add else that will remove time from timer
   currentQuestion++;
@@ -138,27 +150,68 @@ function selectAnswer() {
   }
 }
 
+function nextQuestion() {
+  questionText.innerText = questions[currentQuestion].question;
+  for (let i = 0; i < questions[currentQuestion].answers.length; i++) {
+    const answerButton = answerButtonContainer.children[i];
+    answerButton.innerText = questions[currentQuestion].answers[i];
+    answerButton.dataset.answer = questions[currentQuestion].answers[i];
 
-//! See Credits for Progress Bar Inspiration
-
-function updateProgressBar() {
-  if (progress < 100) {
-    var elem = document.getElementById("myBar");
-    progress += 20;
-    elem.style.width = progress + "%";
-    elem.innerHTML = progress + "%";
+    answerButton.addEventListener("click", selectAnswer);
   }
 }
 
+function endQuiz() {
+  clearInterval(intervalId);
+  questionContainer.classList.add("hidden");
+  timerContainer.classList.add("hidden");
+  progressContainer.classList.remove("hidden");
+  scoreDisplay.classList.add("hidden");
+  scoreFormContainer.classList.remove("hidden");
+
+  // Save the name and score in local storage
+  if (name && score) {
+    localStorage.setItem(name, score);
+  }
+}
+
+function saveScore() {
+  const name = document.getElementById('name-input').value;
+  const score = document.getElementById('score').innerText;
+  localStorage.setItem('quizScore', score);
+  localStorage.setItem('quizName', name);
+}
+
+scoreFormContainer.addEventListener('submit', function (event) {
+  event.preventDefault(); // prevent form submission
+  const name = document.getElementById('name-input').value;
+  const quizScore = score;
+  const scoreObject = { name: name, score: quizScore };
+  localStorage.setItem('quizScore', JSON.stringify(scoreObject));
+});
+
+// check if there is already a score in local storage
+const savedScore = localStorage.getItem('quizScore');
+if (savedScore) {
+  const scoreObject = JSON.parse(savedScore);
+  // display the score on the page
+}
+//TODO This wasn't working - figure it out!
+// function saveScore() {
+//   const name = nameInput.value;
+//   const savedScore = score;
+//   const savedScoreDisplay = document.getElementById("saved-score");
+//   savedScoreDisplay.innerHTML = `${name} - ${savedScore} Points`;
+// }
+
+
 //TODO FUNCTIONS I KNOW I WILL NEED FOR THIS TO WORK
-function nextQuestion() {
-    //Need to show the next question when I click an answer for the previous question
-}
-
-function endQuiz() { 
-    //Need the quiz to end when the questions end, or when time runs out.  This should also call the saveScore function I still need to figure out.
-}
-
-function saveScore () {
-    //Need some way to save the score to local memory - name prompt and final score should be saved.
-}
+// function nextQuestion() {
+//     //Need to show the next question when I click an answer for the previous question
+// }
+// function endQuiz() {
+//     //Need the quiz to end when the questions end, or when time runs out.  This should also call the saveScore function I still need to figure out.
+//}
+// function saveScore () {
+//     //Need some way to save the score to local memory - name prompt and final score should be saved.
+//}
