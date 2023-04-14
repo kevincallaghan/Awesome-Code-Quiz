@@ -117,6 +117,16 @@ border-radius: 25px;
 margin-top: 20px;
 }
 
+.progress-container {
+  display: flex;
+  justify-content: left;
+  border: 3px solid var(--dark-green);
+  /* border-top: 3px solid var(--dark-green);
+border-bottom: 3px solid var(--dark-green); */
+  border-radius: 25px;
+  margin-top: 20px;
+}
+
 .start-button {
 padding-left: 30px;
 padding-right: 30px;

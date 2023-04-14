@@ -1,25 +1,3 @@
-// GIVEN I am taking a code quiz
-// WHEN I click the start button
-// THEN a timer starts and I am presented with a question
-// WHEN I answer a question
-// THEN I am presented with another question
-// WHEN I answer a question incorrectly
-// THEN time is subtracted from the clock
-// WHEN all questions are answered or the timer reaches 0
-// THEN the game is over
-// WHEN the game is over
-// THEN I can save my initials and my score
-//TODO add variables and questions/answers
-//TODO start button with onclick to start quiz
-   //todo need variable for 
-//todo timer that counts down once started
-//todo question appears with answer choices
-//todo once answered, another question appears
-//todo timer subtracted if answer is wrong
-//todo quiz ends when all questions are answered of timer gets to zero
-//todo then game over shows up
-//todo then you can enter and save score
-
 // Global variables
 let currentQuestion = 0;
 let score = 0;
@@ -28,13 +6,13 @@ let remainingTime = 0;
 let intervalId;
 
 // Variables taken from HTML
-const startButton = document.getElementById("start-button");
+const startButton = document.getElementById("start-button"); hideBottomButtonContainer = document.getElementById("hideBottomButtonContainer"); 
 const nextButton = document.getElementById("next-button");
 const submitButton = document.getElementById("submit-button");
 const nameInput = document.getElementById("name-input");
 const questionContainer = document.getElementById("question-container");
 const timerContainer = document.getElementById("timer");
-const progressContainer = document.getElementById("myProgress");
+const progressContainer = document.getElementById("hideProgress");
 const scoreFormContainer = document.getElementById("saveScoreForm");
 const questionText = document.getElementById("question");
 const timerElement = document.getElementById("time")
@@ -42,6 +20,9 @@ const answerButtonContainer = document.getElementById("answer-button-container")
 const startingTime = 90;
 const scoreDisplay = document.getElementById("score");
 const timerDisplay = document.getElementById("timer");
+const nameScoreContainer = document.getElementById("name-score-container");
+const playerNameDisplay = document.getElementById("player-name");
+const playerScoreDisplay = document.getElementById("player-score");
 
 // Question and answer variables
 const questions = [
@@ -79,10 +60,11 @@ startButton.addEventListener("click", startQuizWithTimer);
 
 function startQuizWithTimer() {
   startButton.classList.add("hidden");
+  hideBottomButtonContainer.classList.add("hidden");
   questionContainer.classList.remove("hidden");
   timerContainer.classList.remove("hidden");
   progressContainer.classList.remove("hidden");
-  scoreDisplay.classList.remove("hidden");
+  scoreDisplay.classList.remove("hidden");  //Does this even do anything??
   remainingTime = startingTime;
 
   //! See Credits for Timer Inspiration
@@ -127,8 +109,6 @@ for (let i = 0; i < questions[currentQuestion].answers.length; i++) {
   answerButton.dataset.answer = questions[currentQuestion].answers[i];
   
   answerButton.addEventListener("click", selectAnswer);
-
-  //TODO Need to figure out how to remove time from timer after an incorrect answer
 }
 
 //User selects their answer and either gets it correct  and earns points or !correct and will lose time
@@ -139,8 +119,11 @@ function selectAnswer() {
   if (selectedAnswer === correctAnswer) {
     score += 10;
     scoreDisplay.innerText = score + " Points";
+  } else {
+    remainingTime -= 5;
+    timerDisplay.innerText = remainingTime;
   }
-  //Need to add else that will remove time from timer
+  
   currentQuestion++;
   updateProgressBar();
   if (currentQuestion === questions.length || remainingTime <= 0) {
@@ -165,15 +148,32 @@ function endQuiz() {
   clearInterval(intervalId);
   questionContainer.classList.add("hidden");
   timerContainer.classList.add("hidden");
-  progressContainer.classList.remove("hidden");
   scoreDisplay.classList.add("hidden");
   scoreFormContainer.classList.remove("hidden");
+  nameScoreContainer.classList.remove("hidden");
+  playerNameDisplay.classList.remove("hidden");
+  playerScoreDisplay.classList.remove("hidden");
+ }
 
-  // Save the name and score in local storage
-  if (name && score) {
-    localStorage.setItem(name, score);
-  }
-}
+// function endQuiz() {
+//   clearInterval(intervalId);
+//   questionContainer.classList.add("hidden");
+//   timerContainer.classList.add("hidden");
+//   progressContainer.classList.add("hidden");
+//   scoreFormContainer.classList.remove("hidden");
+//   scoreDisplay.classList.add("hidden");
+
+//   // Save the name and score to local storage
+//   submitButton.addEventListener("click", function () {
+//     const playerName = nameInput.value;
+//     const playerScore = score;
+//     localStorage.setItem(playerName, playerScore);
+//     playerNameDisplay.innerText = playerName;
+//     playerScoreDisplay.innerText = playerScore;
+//     nameInput.value = "";
+//     scoreFormContainer.classList.add("hidden");
+//   });
+// }
 
 function saveScore() {
   const name = document.getElementById('name-input').value;
@@ -186,24 +186,47 @@ scoreFormContainer.addEventListener('submit', function (event) {
   event.preventDefault(); // prevent form submission
   const name = document.getElementById('name-input').value;
   const quizScore = score;
-  const scoreObject = { name: name, score: quizScore };
-  localStorage.setItem('quizScore', JSON.stringify(scoreObject));
+  const scoreName = { name: name, score: quizScore };
+  localStorage.setItem('quizScore', JSON.stringify(scoreName));
+
 });
 
 // check if there is already a score in local storage
 const savedScore = localStorage.getItem('quizScore');
 if (savedScore) {
-  const scoreObject = JSON.parse(savedScore);
+  const scoreName = JSON.parse(savedScore);
   // display the score on the page
+  const playerName = document.getElementById('player-name');
+  const playerScore = document.getElementById('player-score');
+  playerName.textContent = scoreName.name;
+  playerScore.textContent = scoreName.score;
+  playerNameDisplay.classList.remove("hidden");
+  playerScoreDisplay.classList.remove("hidden");
 }
-//TODO This wasn't working - figure it out!
-// function saveScore() {
-//   const name = nameInput.value;
-//   const savedScore = score;
-//   const savedScoreDisplay = document.getElementById("saved-score");
-//   savedScoreDisplay.innerHTML = `${name} - ${savedScore} Points`;
-// }
 
+
+
+// GIVEN I am taking a code quiz
+// WHEN I click the start button
+// THEN a timer starts and I am presented with a question
+// WHEN I answer a question
+// THEN I am presented with another question
+// WHEN I answer a question incorrectly
+// THEN time is subtracted from the clock
+// WHEN all questions are answered or the timer reaches 0
+// THEN the game is over
+// WHEN the game is over
+// THEN I can save my initials and my score
+//TODO add variables and questions/answers
+//TODO start button with onclick to start quiz
+   //todo need variable for 
+//todo timer that counts down once started
+//todo question appears with answer choices
+//todo once answered, another question appears
+//todo timer subtracted if answer is wrong
+//todo quiz ends when all questions are answered of timer gets to zero
+//todo then game over shows up
+//todo then you can enter and save score
 
 //TODO FUNCTIONS I KNOW I WILL NEED FOR THIS TO WORK
 // function nextQuestion() {
