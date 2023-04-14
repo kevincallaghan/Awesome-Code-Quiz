@@ -54,8 +54,6 @@ const questions = [
 ]
 
 //Starts the quiz and the timer at the same time.
-//TODO Still something wrong with timer - won't show on screen - FIX LATER!!!!  Need to update Credits tomorrow!!!
-
 startButton.addEventListener("click", startQuizWithTimer);
 
 function startQuizWithTimer() {
@@ -144,6 +142,7 @@ function nextQuestion() {
   }
 }
 
+//end quiz function for when questions are finished or time runs out
 function endQuiz() {
   clearInterval(intervalId);
   questionContainer.classList.add("hidden");
@@ -155,54 +154,40 @@ function endQuiz() {
   playerScoreDisplay.classList.remove("hidden");
  }
 
-// function endQuiz() {
-//   clearInterval(intervalId);
-//   questionContainer.classList.add("hidden");
-//   timerContainer.classList.add("hidden");
-//   progressContainer.classList.add("hidden");
-//   scoreFormContainer.classList.remove("hidden");
-//   scoreDisplay.classList.add("hidden");
+ //save the score to local storage
 
-//   // Save the name and score to local storage
-//   submitButton.addEventListener("click", function () {
-//     const playerName = nameInput.value;
-//     const playerScore = score;
-//     localStorage.setItem(playerName, playerScore);
-//     playerNameDisplay.innerText = playerName;
-//     playerScoreDisplay.innerText = playerScore;
-//     nameInput.value = "";
-//     scoreFormContainer.classList.add("hidden");
-//   });
-// }
+const name = document.getElementById('name-input').value;
+const currentScore = document.getElementById('score').innerText;
 
 function saveScore() {
   const name = document.getElementById('name-input').value;
-  const score = document.getElementById('score').innerText;
-  localStorage.setItem('quizScore', score);
+  const currentScore = document.getElementById('score').innerText;
+  localStorage.setItem('quizScore', currentScore);
   localStorage.setItem('quizName', name);
 }
 
 scoreFormContainer.addEventListener('submit', function (event) {
-  event.preventDefault(); // prevent form submission
+  event.preventDefault();
   const name = document.getElementById('name-input').value;
   const quizScore = score;
   const scoreName = { name: name, score: quizScore };
   localStorage.setItem('quizScore', JSON.stringify(scoreName));
-
 });
 
 // check if there is already a score in local storage
 const savedScore = localStorage.getItem('quizScore');
 if (savedScore) {
   const scoreName = JSON.parse(savedScore);
+  
   // display the score on the page
   const playerName = document.getElementById('player-name');
   const playerScore = document.getElementById('player-score');
   playerName.textContent = scoreName.name;
   playerScore.textContent = scoreName.score;
-  playerNameDisplay.classList.remove("hidden");
-  playerScoreDisplay.classList.remove("hidden");
 }
+
+//TODO Need to figure out how to update screen when they click Submit
+//! I am aware that the new score will not appear when added and will only appear when you go through the game a second time.  I have spent a long time trying unsuccessfully to work it out, and am choosing to submit the score feature as-is in order to stay on track with my other homework assignments.  If I am able to figure it out, I will submit it again in the future.
 
 
 
