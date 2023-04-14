@@ -16,7 +16,6 @@
 }
 
 /* Elements */
-
 body {
   font-family: var(--page-font);
   margin: 0;
@@ -31,11 +30,18 @@ main {
 }
 
 /* Timer and Progress Section */
-
 .timer-progress-container {
 display: flex;
 justify-content: space-evenly;
 flex-wrap: nowrap;
+}
+
+.progress-container {
+display: flex;
+justify-content: left;
+border: 3px solid var(--dark-green);
+border-radius: 25px;
+margin-top: 20px;
 }
 
 #myProgress {
@@ -53,24 +59,13 @@ flex-wrap: nowrap;
   background-color: #04AA6D;
 }
 
-<style>div {
-  width: 100px;
-  height: 100px;
-  background-color: red;
-
-}
-
 /* Avengers Photo */
-
 .avengersPic {
   width:85%;
 }
 
-
 /* Quiz Section */
-
 .outside-container {
-/* max-width:800px; */
 width: 500px;
 border-radius: 25px;
 border: 2px solid var(--dark-green);
@@ -89,6 +84,24 @@ text-align: center;
 
 .hidden {
 display: none;
+}
+
+#question {
+padding: 5px 0 10px 0;
+font-size: 1.35rem;
+font-weight: 700;
+}
+
+/* Buttons */
+
+.start-button {
+padding-left: 30px;
+padding-right: 30px;
+background-color: var(--deep-red);
+}
+
+.start-button:hover {
+background-color: var(--dark-red);
 }
 
 .button {
@@ -111,69 +124,15 @@ transform: scale(1.1);
 display: flex;
 justify-content: center;
 border: 3px solid var(--dark-green);
-/* border-top: 3px solid var(--dark-green);
-border-bottom: 3px solid var(--dark-green); */
 border-radius: 25px;
 margin-top: 20px;
 }
 
-.progress-container {
-  display: flex;
-  justify-content: left;
-  border: 3px solid var(--dark-green);
-  /* border-top: 3px solid var(--dark-green);
-border-bottom: 3px solid var(--dark-green); */
-  border-radius: 25px;
-  margin-top: 20px;
-}
-
-.start-button {
-padding-left: 30px;
-padding-right: 30px;
-background-color: var(--deep-red);
-}
-
-.start-button:hover {
-background-color: var(--dark-red);
-}
-
-#question {
-padding: 5px 0 10px 0;
-font-size: 1.35rem;
-font-weight: 700;
-}
-
 #answer-button-container {
-/* border-top: 3px solid var(--dark-green);
-border-bottom: 3px solid var(--dark-green); */
 border-radius: 25px;
 display: flex;
 flex-direction: column;
 justify-content: space-around;
 align-content: space-around;
 flex-wrap: wrap;
-}
-
-.next-button {
-
-}
-
-.answer-containerv{
-
-}
-
-#question-container {
-
-}
-
-.choices {
-
-}
-
-#next-button {
-
-}
-
-#start-button {
-
 }
