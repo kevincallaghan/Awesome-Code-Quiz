@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,45 +8,59 @@
   <link rel="stylesheet" type="text/css" href="./assets/style/style.css" />
   <title>Marvel's Avengers Quiz</title>
 </head>
+
 <body>
 
   <div class="outside-container">
-          <img src="images/Avengers2.png" class="avengersPic">
-      <!-- <h1 class="quiz-title">Marvel's Avengers Quiz</h1> -->
-          <div class="timer-progress-container">
-          <div id="timer" class="hidden"><span id="time">2:00</span></div>
-          <div id="score" class="hidden"><span id="current-score">0</span></div>
-          </div>
-      <div id="question-container" class="hidden">
-          <div id="question">Question Goes Here</div>
-          <div id="answer-button-container" class="answer-container">
-              <button class="button choices" data-number="1">Answer Option 1</button>
-              <button class="button choices" data-number="2">Answer Option 2</button>
-              <button class="button choices" data-number="3">Answer Option 3</button>
-              <button class="button choices" data-number="4">Answer Option 4</button>
-          </div>
-
+    <img src="assets/images/Avengers2.png" class="avengersPic">
+    <!-- <h1 class="quiz-title">Marvel's Avengers Quiz</h1> -->
+    <div class="timer-progress-container">
+      <div id="timer" class="hidden"><span id="time">2:00</span></div>
+      <div id="score" class="hidden"><span id="current-score">0</span></div>
+    </div>
+    <div id="question-container" class="hidden">
+      <div id="question">Question Goes Here</div>
+      <div id="answer-button-container" class="answer-container">
+        <button class="button choices" data-number="1">Answer Option 1</button>
+        <button class="button choices" data-number="2">Answer Option 2</button>
+        <button class="button choices" data-number="3">Answer Option 3</button>
+        <button class="button choices" data-number="4">Answer Option 4</button>
       </div>
+
+    </div>
+    <div id="hideBottomButtonContainer">
       <div class="bottom-button-container">
-          <button id="start-button" class="start-button button">Start Quiz</button>
-          <div id="myProgress" class="hidden">
-            <div id="myBar">0%</div>
-            <div id="saveScoreForm" class="hidden">
-            <form>
-              <br>
-              <label for="name-input">Name:</label>
-              <input type="text" id="name-input" name="name">
-              <button type="submit">Save Score</button>
-            </form>
-            <br>
-            </div>
-            <div id="savedScoreDisplay" class="hidden">
+      <button id="start-button" class="start-button button">Start Quiz</button>
+    </div>
+    </div>
 
-          </div>
+    <div id="hideProgress" class="hidden">
+      <div id="myProgress" class="progress-container">
+        <div id="myBar">0%</div>
       </div>
+      </div>
+        
+        <div id="saveScoreForm" class="hidden">
+          <form>
+            <br>
+            <label for="name-input">Name:</label>
+            <input type="text" id="name-input" name="name">
+            <button type="submit">Save Score</button>
+          </form>
+          <br>
+        </div>
+
+    <div>
+      <div id="name-score-container" class="hidden">
+        <h3>High Score:</h3>
+        <div id="player-name" class="hidden"><span id="time"></span></div>
+        <div id="player-score" class="hidden"><span id="current-score"></span></div>
+      </div>
+    </div>
   </div>
-  
+
 
   <script src="script.js"></script>
 </body>
+
 </html>

@@ -2,37 +2,36 @@
 
 ## Description
 
-Provide a short description explaining the what, why, and how of your project. Use the following questions as a guide:
+This Avengers Quiz is made to not only test your knowledge of the Avengers, but also to test my ability to progress through a quiz using javascript.  As you click through the questions, I loop through an array to update the page with the next question while counting down the timer and adding up your score.
 
-- What was your motivation?
-- Why did you build this project? (Note: the answer is not "Because it was a homework assignment.")
-- What problem does it solve?
-- What did you learn?
+Once you have completed the quiz, you are able to enter your name and save your score to try and beat it the next time through!
+
+After many attempts and failures, this quiz finally came together.  I learned a lot about navigating through my variables and elements to manipulate the different parts of the quiz, the scoring, the time, and the submission to local storage.
 
 ## Table of Contents (Optional)
 
 If your README is long, add a table of contents to make it easy for users to find what they need.
 
-- [Installation](#installation)
 - [Usage](#usage)
 - [Credits](#credits)
 - [License](#license)
 
-## Installation
-
-What are the steps required to install your project? Provide a step-by-step description of how to get the development environment running.
 
 ## Usage
 
-Here is a link to the deployed Quiz:
+Here is a link to the deployed Quiz: https://kevincallaghan.github.io/Awesome-Code-Quiz/ 
 
-Provide instructions and examples for use. Include screenshots as needed.
+Once the page loads and you are ready to begin, go ahead and click "Start Quiz" to begin the timer and view the first question.  Click the correct answers until you are 100% done with the questions.  After you have completed the quiz, you and enter your name to save your score.
 
-To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the following syntax:
+Here is an example of the Start Screen:
+    ![Start Page](assets/images/screenshot-1.png)
 
-    ```md
-    ![alt text](assets/images/screenshot.png)
-    ```
+Here is an example of the Questions:
+    ![Questions](assets/images/screenshot-2.png)
+
+Here is an example of the Score Screen:
+    ![Save Score](assets/images/screenshot-3.png)
+ 
 
 ## Credits
 
@@ -44,11 +43,9 @@ To add a screenshot, create an `assets/images` folder in your repository and upl
 
 4. I found a timer on Stack Overflow that seemed very much like what I was wanting.  I copied the timer from an answer to the featured question.  The answer was written by Lorenzo Cinque.  Here is a link to the page: https://stackoverflow.com/questions/30427882/make-a-timer-using-setinterval 
 
-5. I found a Stack Overflow page that showed me how to stop my setInterval.  It was previously 
-
-
+5. 
 
 
 ## License
 
-The last section of a high-quality README file is the license. This lets other developers know what they can and cannot do with your project. If you need help choosing a license, refer to [https://choosealicense.com/](https://choosealicense.com/).
+Please refer to the LICENSE document in the repository for License Information
